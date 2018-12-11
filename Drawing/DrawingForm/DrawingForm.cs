@@ -114,7 +114,7 @@ namespace DrawingForm
 
         private void HandleCanvasMoved(object sender, MouseEventArgs e)
         {
-            _model.PointerMoved(e.X, e.Y);
+            _model.MovePointer(e.X, e.Y);
         }
 
         /// <summary>   Handles the canvas released. </summary>
@@ -126,7 +126,7 @@ namespace DrawingForm
 
         private void HandleCanvasReleased(object sender, MouseEventArgs e)
         {
-            _model.PointerReleased(e.X, e.Y);
+            _model.ReleasePointer(e.X, e.Y);
         }
 
         /// <summary>   Handles the canvas pressed. </summary>
@@ -138,7 +138,7 @@ namespace DrawingForm
 
         private void HandleCanvasPressed(object sender, MouseEventArgs e)
         {
-            _model.PointerPressed(e.X, e.Y);
+            _model.PressPointer(e.X, e.Y);
         }
 
     }

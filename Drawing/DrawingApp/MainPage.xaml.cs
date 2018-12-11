@@ -1,4 +1,8 @@
-﻿using System;
+﻿// file:	MainPage.xaml.cs
+//
+// summary:	Implements the main page.xaml class
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,13 +21,21 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DrawingApp
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+    /// <summary>   An empty page that can be used on its own or navigated to within a Frame. </summary>
+    ///
+    /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+
     public sealed partial class MainPage : Page
     {
+        /// <summary>   The model. </summary>
         DrawingModel.Model _model;
+        /// <summary>   The presentation model. </summary>
         PresentationModel.PresentationModel _presentationModel;
+
+        /// <summary>   Default constructor. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -38,39 +50,85 @@ namespace DrawingApp
             _model._modelChanged += HandleModelChanged;
         }
 
+        /// <summary>   Handles the diamond button click. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Routed event information. </param>
+
         private void HandleDiamondButtonClick(object sender, RoutedEventArgs e)
         {
             _model.ChangeToDiamond();
         }
+
+        /// <summary>   Handles the line button click. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Routed event information. </param>
 
         private void HandleLineButtonClick(object sender, RoutedEventArgs e)
         {
             _model.ChangeToLine();
         }
 
+        /// <summary>   Handles the model changed. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+
         private void HandleModelChanged()
         {
             _presentationModel.Draw();
         }
+
+        /// <summary>   Handles the clear button click. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Routed event information. </param>
 
         private void HandleClearButtonClick(object sender, RoutedEventArgs e)
         {
             _model.Clear();
         }
 
+        /// <summary>   Handles the canvas moved. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Pointer routed event information. </param>
+
         private void HandleCanvasMoved(object sender, PointerRoutedEventArgs e)
         {
-            _model.PointerMoved(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
+            _model.MovePointer(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
+
+        /// <summary>   Handles the canvas released. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Pointer routed event information. </param>
 
         private void HandleCanvasReleased(object sender, PointerRoutedEventArgs e)
         {
-            _model.PointerReleased(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
+            _model.ReleasePointer(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
+
+        /// <summary>   Handles the canvas pressed. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Pointer routed event information. </param>
 
         private void HandleCanvasPressed(object sender, PointerRoutedEventArgs e)
         {
-            _model.PointerPressed(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
+            _model.PressPointer(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
     }
 }

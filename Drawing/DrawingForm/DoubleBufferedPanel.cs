@@ -1,14 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// file:	DoubleBufferedPanel.cs
+//
+// summary:	Implements the double buffered panel class
+
 using System.Windows.Forms;
 
 namespace DrawingForm
 {
-    class DoubleBufferedPanel: Panel
+    /// <summary>   Panel for editing the double buffered. </summary>
+    ///
+    /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+
+    class DoubleBufferedPanel : Panel
     {
+        /// <summary>   Default constructor. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+
         public DoubleBufferedPanel()
         {
             DoubleBuffered = true;

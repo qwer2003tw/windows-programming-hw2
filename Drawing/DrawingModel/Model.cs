@@ -16,15 +16,25 @@ namespace DrawingModel
         ///
         /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
-        public enum DrawType { Line, Diamond, None };
+        public delegate void ModelChangedEventHandler();
         /// <summary>   Event queue for all listeners interested in _modelChanged events. </summary>
         public event ModelChangedEventHandler _modelChanged;
 
-        /// <summary>   Delegate for handling ModelChanged events. </summary>
+        /// <summary>   Values that represent draw types. </summary>
         ///
         /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
-        public delegate void ModelChangedEventHandler();
+        public enum DrawType
+        {
+            /// <summary>   An enum constant representing the line option. </summary>
+            Line,
+            /// <summary>   An enum constant representing the diamond option. </summary>
+            Diamond,
+            /// <summary>   An enum constant representing the none option. </summary>
+            None
+        };
+        /// <summary>   Event queue for all listeners interested in _modelChanged events. </summary>
+
         /// <summary>   The first point x coordinate. </summary>
         double _firstPointX;
         /// <summary>   The first point y coordinate. </summary>
@@ -47,15 +57,15 @@ namespace DrawingModel
         ///
         /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
         ///
-        /// <param name="x">    The x coordinate. </param>
-        /// <param name="y">    The y coordinate. </param>
+        /// <param name="pointX">   The x coordinate. </param>
+        /// <param name="pointY">   The y coordinate. </param>
 
-        public void PointerPressed(double x, double y)
+        public void PressPointer(double pointX, double pointY)
         {
-            if (x > 0 && y > 0)
+            if (pointX > 0 && pointY > 0)
             {
-                _firstPointX = x;
-                _firstPointY = y;
+                _firstPointX = pointX;
+                _firstPointY = pointY;
                 switch (_drawType)
                 {
                     case DrawType.Line:
@@ -67,7 +77,6 @@ namespace DrawingModel
                         _diamond.Y1 = _firstPointY;
                         break;
                 }
-
                 _isPressed = true;
             }
         }
@@ -76,22 +85,22 @@ namespace DrawingModel
         ///
         /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
         ///
-        /// <param name="x">    The x coordinate. </param>
-        /// <param name="y">    The y coordinate. </param>
+        /// <param name="pointX">   The x coordinate. </param>
+        /// <param name="pointY">   The y coordinate. </param>
 
-        public void PointerMoved(double x, double y)
+        public void MovePointer(double pointX, double pointY)
         {
             if (_isPressed)
             {
                 switch (_drawType)
                 {
                     case DrawType.Line:
-                        _line.X2 = x;
-                        _line.Y2 = y;
+                        _line.X2 = pointX;
+                        _line.Y2 = pointY;
                         break;
                     case DrawType.Diamond:
-                        _diamond.X2 = x;
-                        _diamond.Y2 = y;
+                        _diamond.X2 = pointX;
+                        _diamond.Y2 = pointY;
                         break;
                 }
                 NotifyModelChanged();
@@ -102,10 +111,10 @@ namespace DrawingModel
         ///
         /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
         ///
-        /// <param name="x">    The x coordinate. </param>
-        /// <param name="y">    The y coordinate. </param>
+        /// <param name="pointX">   The x coordinate. </param>
+        /// <param name="pointY">   The y coordinate. </param>
 
-        public void PointerReleased(double x, double y)
+        public void ReleasePointer(double pointX, double pointY)
         {
             if (_isPressed)
             {
@@ -113,20 +122,10 @@ namespace DrawingModel
                 switch (_drawType)
                 {
                     case DrawType.Line:
-                        var line = new Line();
-                        line.X1 = _firstPointX;
-                        line.Y1 = _firstPointY;
-                        line.X2 = x;
-                        line.Y2 = y;
-                        _lines.Add(line);
+                        ReleaseLine(pointX, pointY);
                         break;
                     case DrawType.Diamond:
-                        var diamond = new Diamond();
-                        diamond.X1 = _firstPointX;
-                        diamond.Y1 = _firstPointY;
-                        diamond.X2 = x;
-                        diamond.Y2 = y;
-                        _diamonds.Add(diamond);
+                        ReleaseDiamond(pointX, pointY);
                         break;
                 }
                 NotifyModelChanged();
@@ -169,9 +168,7 @@ namespace DrawingModel
                         _diamond.Draw(graphics);
                         break;
                 }
-
             }
-
         }
 
         /// <summary>   Change to line. </summary>
@@ -190,6 +187,40 @@ namespace DrawingModel
         public void ChangeToDiamond()
         {
             _drawType = DrawType.Diamond;
+        }
+
+        /// <summary>   Releases the line. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        ///
+        /// <param name="pointX">   The x coordinate. </param>
+        /// <param name="pointY">   The y coordinate. </param>
+
+        private void ReleaseLine(double pointX, double pointY)
+        {
+            var line = new Line();
+            line.X1 = _firstPointX;
+            line.Y1 = _firstPointY;
+            line.X2 = pointX;
+            line.Y2 = pointY;
+            _lines.Add(line);
+        }
+
+        /// <summary>   Releases the diamond. </summary>
+        ///
+        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        ///
+        /// <param name="pointX">   The x coordinate. </param>
+        /// <param name="pointY">   The y coordinate. </param>
+
+        private void ReleaseDiamond(double pointX, double pointY)
+        {
+            var diamond = new Diamond();
+            diamond.X1 = _firstPointX;
+            diamond.Y1 = _firstPointY;
+            diamond.X2 = pointX;
+            diamond.Y2 = pointY;
+            _diamonds.Add(diamond);
         }
 
         /// <summary>   Notifies the model changed. </summary>

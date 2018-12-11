@@ -6,3 +6,5 @@ Drawing/DrawingModel/bin/
 Drawing/DrawingForm/obj/
 Drawing/DrawingForm/bin/
 /.vs
+*.Cache
+Drawing/DrawingModel/project.lock.json

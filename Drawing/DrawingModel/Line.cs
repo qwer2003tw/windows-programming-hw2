@@ -1,11 +1,50 @@
-﻿namespace DrawingModel
+﻿// file:	Line.cs
+//
+// summary:	Implements the line class
+
+namespace DrawingModel
 {
+    /// <summary>   A line. </summary>
+    ///
+    /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+
     public class Line : IShape
     {
-        public double X1 { get; set; }
-        public double Y1 { get; set; }
-        public double X2 { get; set; }
-        public double Y2 { get; set; }
+        /// <summary>   Gets or sets the x coordinate 1. </summary>
+        ///
+        /// <value> The x coordinate 1. </value>
+
+        public double X1
+        {
+            get; set;
+        }
+
+        /// <summary>   Gets or sets the y coordinate 1. </summary>
+        ///
+        /// <value> The y coordinate 1. </value>
+
+        public double Y1
+        {
+            get; set;
+        }
+
+        /// <summary>   Gets or sets the x coordinate 2. </summary>
+        ///
+        /// <value> The x coordinate 2. </value>
+
+        public double X2
+        {
+            get; set;
+        }
+
+        /// <summary>   Gets or sets the y coordinate 2. </summary>
+        ///
+        /// <value> The y coordinate 2. </value>
+
+        public double Y2
+        {
+            get; set;
+        }
 
         /// <summary>   Draws the given graphics. </summary>
         ///
