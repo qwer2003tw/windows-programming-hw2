@@ -9,6 +9,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Canvas x:Name="_canvas" HorizontalAlignment="Center" Height="887" Margin="0,103,0,0" VerticalAlignment="Top" Width="1480"/>
+        <Button x:Name="_clear" Content="Clear" HorizontalAlignment="Left" Margin="1192,10,0,0" VerticalAlignment="Top" Height="93" Width="298" FontWeight="Bold"/>
+        <Button x:Name="_line" Content="Line" HorizontalAlignment="Left" Margin="642,10,0,0" VerticalAlignment="Top" Height="93" Width="298"/>
+        <Button x:Name="_diamond" Content="Diamond" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="93" Width="298"/>
 
     </Grid>
 </Page>
