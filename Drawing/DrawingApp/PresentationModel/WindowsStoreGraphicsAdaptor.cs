@@ -3,6 +3,7 @@
 // summary:	Implements the windows store graphics adaptor class
 
 using DrawingModel;
+using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -15,6 +16,7 @@ namespace DrawingApp.PresentationModel
 
     class WindowsStoreGraphicsAdaptor : IGraphics
     {
+        private const int TWO = 2;
         /// <summary>   The canvas. </summary>
         Canvas _canvas;
 
@@ -49,7 +51,20 @@ namespace DrawingApp.PresentationModel
 
         public void DrawDiamond(double x1, double y1, double x2, double y2)
         {
-            throw new System.NotImplementedException();
+            Windows.UI.Xaml.Shapes.Polygon polygon = new Windows.UI.Xaml.Shapes.Polygon();
+            int middleX = (int)(x1 + (x2 - x1) / TWO);
+            int middleY = (int)(y1 + (y2 - y1) / TWO);
+
+            PointCollection points = new PointCollection();
+            points.Add(new Point(middleX, (int)y1));
+            points.Add(new Point((int)x1, middleY));
+            points.Add(new Point(middleX, (int)y2));
+            points.Add(new Point((int)x2, middleY));
+            polygon.Points = points;
+            polygon.Margin = new Windows.UI.Xaml.Thickness(25);
+            polygon.Fill = new SolidColorBrush(Colors.AliceBlue);
+            polygon.Stroke = new SolidColorBrush(Colors.Black);
+            _canvas.Children.Add(polygon);
         }
 
         /// <summary>   Draw line. </summary>
