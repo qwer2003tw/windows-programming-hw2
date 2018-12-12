@@ -17,6 +17,7 @@ namespace DrawingApp.PresentationModel
     class WindowsStoreGraphicsAdaptor : IGraphics
     {
         private const int TWO = 2;
+        private const int THICK = 25;
         /// <summary>   The canvas. </summary>
         Canvas _canvas;
 
@@ -51,7 +52,7 @@ namespace DrawingApp.PresentationModel
 
         public void DrawDiamond(double x1, double y1, double x2, double y2)
         {
-            Windows.UI.Xaml.Shapes.Polygon polygon = new Windows.UI.Xaml.Shapes.Polygon();
+            Windows.UI.Xaml.Shapes.Polygon shape = new Windows.UI.Xaml.Shapes.Polygon();
             int middleX = (int)(x1 + (x2 - x1) / TWO);
             int middleY = (int)(y1 + (y2 - y1) / TWO);
 
@@ -60,11 +61,11 @@ namespace DrawingApp.PresentationModel
             points.Add(new Point((int)x1, middleY));
             points.Add(new Point(middleX, (int)y2));
             points.Add(new Point((int)x2, middleY));
-            polygon.Points = points;
-            polygon.Margin = new Windows.UI.Xaml.Thickness(25);
-            polygon.Fill = new SolidColorBrush(Colors.AliceBlue);
-            polygon.Stroke = new SolidColorBrush(Colors.Black);
-            _canvas.Children.Add(polygon);
+            shape.Points = points;
+            shape.Margin = new Windows.UI.Xaml.Thickness(THICK);
+            shape.Fill = new SolidColorBrush(Colors.AliceBlue);
+            shape.Stroke = new SolidColorBrush(Colors.Black);
+            _canvas.Children.Add(shape);
         }
 
         /// <summary>   Draw line. </summary>
