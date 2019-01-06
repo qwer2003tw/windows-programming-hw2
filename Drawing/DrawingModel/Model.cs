@@ -2,7 +2,11 @@
 //
 // summary:	Implements the model class
 
+using DrawingModel.Shape;
+using DrawingModel.Shape.Impl;
+using DrawingModel.State.Impl;
 using System.Collections.Generic;
+using Windows.Foundation;
 
 namespace DrawingModel
 {
@@ -19,20 +23,6 @@ namespace DrawingModel
         public delegate void ModelChangedEventHandler();
         /// <summary>   Event queue for all listeners interested in _modelChanged events. </summary>
         public event ModelChangedEventHandler _modelChanged;
-
-        /// <summary>   Values that represent draw types. </summary>
-        ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-
-        public enum DrawType
-        {
-            /// <summary>   An enum constant representing the line option. </summary>
-            Line,
-            /// <summary>   An enum constant representing the diamond option. </summary>
-            Diamond,
-            /// <summary>   An enum constant representing the none option. </summary>
-            None
-        };
         /// <summary>   Event queue for all listeners interested in _modelChanged events. </summary>
 
         /// <summary>   The first point x coordinate. </summary>
@@ -41,17 +31,37 @@ namespace DrawingModel
         double _firstPointY;
         /// <summary>   True if is pressed, false if not. </summary>
         bool _isPressed = false;
-        /// <summary>   The lines. </summary>
-        readonly List<Line> _lines = new List<Line>();
-        /// <summary>   The diamonds. </summary>
-        readonly List<Diamond> _diamonds = new List<Diamond>();
-        /// <summary>   The line. </summary>
-        readonly Line _line = new Line();
-        /// <summary>   The diamond. </summary>
-        readonly Diamond _diamond = new Diamond();
+        ///// <summary>   The lines. </summary>
+        //readonly List<Line> _lines = new List<Line>();
+        ///// <summary>   The diamonds. </summary>
+        //readonly List<Diamond> _diamonds = new List<Diamond>();
+        readonly List<IShape> _shapes = new List<IShape>();
+        IShape _shape;
+        IState _state;
+        IGraphics _graphics;
+
 
         /// <summary>   Type of the draw. </summary>
         DrawType _drawType = DrawType.None;
+
+        public Model(IGraphics graphics)
+        {
+            _graphics = graphics;
+        }
+        public void ChangeToDrawingState(DrawType _drawType)
+        {
+            IState newState = new DrawingState(this, _graphics, _drawType);
+            _state = newState;
+        }
+
+
+        public void ChangeToPointerState()
+        {
+            IState newState = new PointerState(this);
+            _state = newState;
+            //if (_updatePointerEvent != null)
+            //    _updatePointerEvent();
+        }
 
         /// <summary>   Pointer pressed. </summary>
         ///
@@ -69,16 +79,21 @@ namespace DrawingModel
                 switch (_drawType)
                 {
                     case DrawType.Line:
-                        _line.X1 = _firstPointX;
-                        _line.Y1 = _firstPointY;
+                        _shape = ShapeFactory.GetLine(_firstPointX, _firstPointY, 0, 0);
                         break;
                     case DrawType.Diamond:
-                        _diamond.X1 = _firstPointX;
-                        _diamond.Y1 = _firstPointY;
+                        _shape = ShapeFactory.GetDiamond(_firstPointX, _firstPointY, 0, 0);
+                        break;
+                    case DrawType.Ellipse:
+                        _shape = ShapeFactory.GetEllipse(_firstPointX, _firstPointY, 0, 0);
                         break;
                 }
                 _isPressed = true;
             }
+        }
+        public IShape GetSelectedShape(Point point)
+        {
+            return _shapes.FindLast(shape => shape.IsInside(point));
         }
 
         /// <summary>   Pointer moved. </summary>
@@ -92,17 +107,8 @@ namespace DrawingModel
         {
             if (_isPressed)
             {
-                switch (_drawType)
-                {
-                    case DrawType.Line:
-                        _line.X2 = pointX;
-                        _line.Y2 = pointY;
-                        break;
-                    case DrawType.Diamond:
-                        _diamond.X2 = pointX;
-                        _diamond.Y2 = pointY;
-                        break;
-                }
+                _shape.X2 = pointX;
+                _shape.Y2 = pointY;
                 NotifyModelChanged();
             }
         }
@@ -119,15 +125,7 @@ namespace DrawingModel
             if (_isPressed)
             {
                 _isPressed = false;
-                switch (_drawType)
-                {
-                    case DrawType.Line:
-                        ReleaseLine(pointX, pointY);
-                        break;
-                    case DrawType.Diamond:
-                        ReleaseDiamond(pointX, pointY);
-                        break;
-                }
+                ReleaseShape(pointX, pointY);
                 NotifyModelChanged();
             }
         }
@@ -139,8 +137,7 @@ namespace DrawingModel
         public void Clear()
         {
             _isPressed = false;
-            _lines.Clear();
-            _diamonds.Clear();
+            _shapes.Clear();
             NotifyModelChanged();
         }
 
@@ -150,24 +147,14 @@ namespace DrawingModel
         ///
         /// <param name="graphics"> The graphics. </param>
 
-        public void Draw(IGraphics graphics)
+        public void Draw(IGraphics graphics, bool isRedLine = false)
         {
             graphics.ClearAll();
-            foreach (var line in _lines)
-                line.Draw(graphics);
-            foreach (var diamond in _diamonds)
-                diamond.Draw(graphics);
+            foreach (var shape in _shapes)
+                shape.Draw(graphics, isRedLine);
             if (_isPressed)
             {
-                switch (_drawType)
-                {
-                    case DrawType.Line:
-                        _line.Draw(graphics);
-                        break;
-                    case DrawType.Diamond:
-                        _diamond.Draw(graphics);
-                        break;
-                }
+                _shape.Draw(graphics, isRedLine);
             }
         }
 
@@ -188,39 +175,30 @@ namespace DrawingModel
         {
             _drawType = DrawType.Diamond;
         }
-
-        /// <summary>   Releases the line. </summary>
-        ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
-        /// <param name="pointX">   The x coordinate. </param>
-        /// <param name="pointY">   The y coordinate. </param>
-
-        private void ReleaseLine(double pointX, double pointY)
+        public void ChangeToEllipse()
         {
-            var line = new Line();
-            line.X1 = _firstPointX;
-            line.Y1 = _firstPointY;
-            line.X2 = pointX;
-            line.Y2 = pointY;
-            _lines.Add(line);
+            _drawType = DrawType.Ellipse;
         }
 
-        /// <summary>   Releases the diamond. </summary>
-        ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
-        /// <param name="pointX">   The x coordinate. </param>
-        /// <param name="pointY">   The y coordinate. </param>
-
-        private void ReleaseDiamond(double pointX, double pointY)
+        private void ReleaseShape(double pointX, double pointY)
         {
-            var diamond = new Diamond();
-            diamond.X1 = _firstPointX;
-            diamond.Y1 = _firstPointY;
-            diamond.X2 = pointX;
-            diamond.Y2 = pointY;
-            _diamonds.Add(diamond);
+            IShape shape;
+
+            switch (_drawType)
+            {
+                case DrawType.Line:
+                    shape = ShapeFactory.GetLine(_firstPointX, _firstPointY, pointX, pointY);
+                    break;
+                case DrawType.Diamond:
+                    shape = ShapeFactory.GetDiamond(_firstPointX, _firstPointY, pointX, pointY);
+                    break;
+                case DrawType.Ellipse:
+                    shape = ShapeFactory.GetEllipse(_firstPointX, _firstPointY, pointX, pointY);
+                    break;
+                default:
+                    throw new KeyNotFoundException();
+            }
+            _shapes.Add(shape);
         }
 
         /// <summary>   Notifies the model changed. </summary>

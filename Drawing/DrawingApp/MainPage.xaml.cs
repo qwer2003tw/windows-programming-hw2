@@ -2,6 +2,7 @@
 //
 // summary:	Implements the main page.xaml class
 
+using DrawingApp.PresentationModel;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -29,7 +30,7 @@ namespace DrawingApp
         public MainPage()
         {
             this.InitializeComponent();
-            _model = new DrawingModel.Model();
+            _model = new DrawingModel.Model(new WindowsStoreGraphicsAdaptor(_canvas));
             _presentationModel = new PresentationModel.PresentationModel(_model, _canvas);
             _canvas.PointerPressed += HandleCanvasPressed;
             _canvas.PointerReleased += HandleCanvasReleased;
@@ -119,6 +120,11 @@ namespace DrawingApp
         private void HandleCanvasPressed(object sender, PointerRoutedEventArgs e)
         {
             _model.PressPointer(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
+        }
+
+        private void HandleEllipseButtonClick(object sender, RoutedEventArgs e)
+        {
+            _model.ChangeToEllipse();
         }
     }
 }

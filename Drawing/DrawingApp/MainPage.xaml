@@ -10,9 +10,10 @@
 
     <Grid>
         <Button x:Name="_clear" Content="Clear" HorizontalAlignment="Left" Margin="1192,10,0,0" VerticalAlignment="Top" Height="93" Width="298" FontWeight="Bold"/>
-        <Button x:Name="_line" Content="Line" HorizontalAlignment="Left" Margin="642,10,0,0" VerticalAlignment="Top" Height="93" Width="298"/>
+        <Button x:Name="_line" Content="Line" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" Height="93" Width="298"/>
         <Button x:Name="_diamond" Content="Diamond" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="93" Width="298"/>
         <Canvas x:Name="_canvas" HorizontalAlignment="Center" Height="882" Margin="0,108,0,0" VerticalAlignment="Top" FocusVisualPrimaryBrush="{x:Null}" Width="1479" Background="Aqua"/>
+        <Button x:Name="_ellipse" Content="Ellipse" HorizontalAlignment="Left" Margin="789,11,0,0" VerticalAlignment="Top" Height="92" Width="299" Click="HandleEllipseButtonClick"/>
 
     </Grid>
 </Page>

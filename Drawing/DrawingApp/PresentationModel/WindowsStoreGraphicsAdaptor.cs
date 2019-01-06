@@ -3,6 +3,7 @@
 // summary:	Implements the windows store graphics adaptor class
 
 using DrawingModel;
+using System;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
@@ -50,7 +51,7 @@ namespace DrawingApp.PresentationModel
         /// <param name="x2">   The second x value. </param>
         /// <param name="y2">   The second y value. </param>
 
-        public void DrawDiamond(double x1, double y1, double x2, double y2)
+        public void DrawDiamond(double x1, double y1, double x2, double y2, bool isRedLine)
         {
             Windows.UI.Xaml.Shapes.Polygon shape = new Windows.UI.Xaml.Shapes.Polygon();
             int middleX = (int)(x1 + (x2 - x1) / TWO);
@@ -64,7 +65,19 @@ namespace DrawingApp.PresentationModel
             shape.Points = points;
             shape.Margin = new Windows.UI.Xaml.Thickness(THICK);
             shape.Fill = new SolidColorBrush(Colors.AliceBlue);
-            shape.Stroke = new SolidColorBrush(Colors.Black);
+            shape.Stroke = new SolidColorBrush(isRedLine ? Colors.Red : Colors.Black);
+            _canvas.Children.Add(shape);
+        }
+
+        public void DrawEllipse(double x1, double y1, double x2, double y2, bool isRedLine)
+        {
+            Windows.UI.Xaml.Shapes.Ellipse shape = new Windows.UI.Xaml.Shapes.Ellipse();
+            shape.Fill = new SolidColorBrush(Colors.AliceBlue);
+            shape.Stroke = new SolidColorBrush(isRedLine ? Colors.Red : Colors.Black);
+            shape.Width = Math.Abs(x2 - x1);
+            shape.Height = Math.Abs(y2 - y1);
+            Canvas.SetTop(shape, (y1 < y2) ? y1 : y2);
+            Canvas.SetLeft(shape, (x1 < x2) ? x1 : x2);
             _canvas.Children.Add(shape);
         }
 
@@ -77,14 +90,14 @@ namespace DrawingApp.PresentationModel
         /// <param name="x2">   The second x value. </param>
         /// <param name="y2">   The second y value. </param>
 
-        public void DrawLine(double x1, double y1, double x2, double y2)
+        public void DrawLine(double x1, double y1, double x2, double y2, bool isRedLine)
         {
             Windows.UI.Xaml.Shapes.Line line = new Windows.UI.Xaml.Shapes.Line();
             line.X1 = x1;
             line.Y1 = y1;
             line.X2 = x2;
             line.Y2 = y2;
-            line.Stroke = new SolidColorBrush(Colors.Black);
+            line.Stroke = new SolidColorBrush(isRedLine ? Colors.Red : Colors.Black);
             _canvas.Children.Add(line);
         }
     }

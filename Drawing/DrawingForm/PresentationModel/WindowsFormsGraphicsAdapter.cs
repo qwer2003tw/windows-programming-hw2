@@ -47,7 +47,7 @@ namespace DrawingForm.PresentationModel
         /// <param name="x2">   The second x value. </param>
         /// <param name="y2">   The second y value. </param>
 
-        public void DrawDiamond(double x1, double y1, double x2, double y2)
+        public void DrawDiamond(double x1, double y1, double x2, double y2, bool isRedLine)
         {
             int middleX = (int)(x1 + (x2 - x1) / TWO);
             int middleY = (int)(y1 + (y2 - y1) / TWO);
@@ -56,7 +56,12 @@ namespace DrawingForm.PresentationModel
                 new Point(middleX, (int)y2),
                 new Point((int)x2, middleY) };
             _graphics.FillPolygon(Brushes.BlueViolet, points);
-            _graphics.DrawPolygon(Pens.Black, points);
+            _graphics.DrawPolygon(isRedLine ? Pens.Red : Pens.Black, points);
+        }
+
+        public void DrawEllipse(double x1, double y1, double x2, double y2, bool isRedLine)
+        {
+            _graphics.DrawEllipse(isRedLine ? Pens.Red : Pens.Black, (float)x1, (float)y1, (float)(x2 - x1), (float)(y2 - y1));
         }
 
         /// <summary>   Draw line. </summary>
@@ -68,9 +73,9 @@ namespace DrawingForm.PresentationModel
         /// <param name="x2">   The second x value. </param>
         /// <param name="y2">   The second y value. </param>
 
-        public void DrawLine(double x1, double y1, double x2, double y2)
+        public void DrawLine(double x1, double y1, double x2, double y2, bool isRedLine)
         {
-            _graphics.DrawLine(Pens.Black, (float)x1, (float)y1, (float)x2, (float)y2);
+            _graphics.DrawLine(isRedLine ? Pens.Red : Pens.Black, (float)x1, (float)y1, (float)x2, (float)y2);
         }
     }
 }

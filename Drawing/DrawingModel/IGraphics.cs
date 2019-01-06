@@ -20,7 +20,7 @@ namespace DrawingModel
         /// <param name="x2">   The second x value. </param>
         /// <param name="y2">   The second y value. </param>
 
-        void DrawLine(double x1, double y1, double x2, double y2);
+        void DrawLine(double x1, double y1, double x2, double y2, bool isRedLine);
 
         /// <summary>   Draw diamond. </summary>
         ///
@@ -29,7 +29,14 @@ namespace DrawingModel
         /// <param name="x2">   The second x value. </param>
         /// <param name="y2">   The second y value. </param>
 
-        void DrawDiamond(double x1, double y1, double x2, double y2);
+        void DrawDiamond(double x1, double y1, double x2, double y2, bool isRedLine);
+        /// <summary>   Draw ellipse. </summary>
+        ///
+        /// <param name="x1">   The first x value. </param>
+        /// <param name="y1">   The first y value. </param>
+        /// <param name="x2">   The second x value. </param>
+        /// <param name="y2">   The second y value. </param>
 
+        void DrawEllipse(double x1, double y1, double x2, double y2, bool isRedLine);
     }
 }

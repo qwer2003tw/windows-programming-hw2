@@ -2,6 +2,7 @@
 //
 // summary:	Implements the drawing Windows Form
 
+using DrawingForm.PresentationModel;
 using DrawingModel;
 using System;
 using System.Drawing;
@@ -43,7 +44,9 @@ namespace DrawingForm
             //
             // prepare presentation model and model
             //
-            _model = new Model();
+            var adapter = new WindowsFormsGraphicsAdapter(_canvas.CreateGraphics());
+
+            _model = new Model(adapter);
             _presentationModel = new PresentationModel.PresentationModel(_model, _canvas);
             _model._modelChanged += HandleModelChanged;
         }
@@ -141,5 +144,9 @@ namespace DrawingForm
             _model.PressPointer(e.X, e.Y);
         }
 
+        private void HandleEllipseButtonClick(object sender, EventArgs e)
+        {
+            _model.ChangeToEllipse();
+        }
     }
 }

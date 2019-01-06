@@ -2,7 +2,9 @@
 //
 // summary:	Implements the shape class
 
-namespace DrawingModel
+using Windows.Foundation;
+
+namespace DrawingModel.Shape
 {
     /// <summary>   Interface for shape. </summary>
     ///
@@ -10,10 +12,15 @@ namespace DrawingModel
 
     public interface IShape
     {
+        double X1 { get; set; }
+        double X2 { get; set; }
+        double Y1 { get; set; }
+        double Y2 { get; set; }
         /// <summary>   Draws the given graphics. </summary>
         ///
         /// <param name="graphics"> The graphics. </param>
 
-        void Draw(IGraphics graphics);
+        void Draw(IGraphics graphics, bool isRedLine);
+        bool IsInside(Point point);
     }
 }

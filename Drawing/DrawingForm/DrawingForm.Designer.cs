@@ -31,13 +31,15 @@
             this._diamond = new System.Windows.Forms.Button();
             this._line = new System.Windows.Forms.Button();
             this._clear = new System.Windows.Forms.Button();
+            this._ellipse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _diamond
             // 
-            this._diamond.Location = new System.Drawing.Point(12, 12);
+            this._diamond.Location = new System.Drawing.Point(11, 9);
+            this._diamond.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._diamond.Name = "_diamond";
-            this._diamond.Size = new System.Drawing.Size(233, 38);
+            this._diamond.Size = new System.Drawing.Size(130, 28);
             this._diamond.TabIndex = 0;
             this._diamond.Text = "Diamond";
             this._diamond.UseVisualStyleBackColor = true;
@@ -45,9 +47,10 @@
             // 
             // _line
             // 
-            this._line.Location = new System.Drawing.Point(283, 12);
+            this._line.Location = new System.Drawing.Point(160, 9);
+            this._line.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._line.Name = "_line";
-            this._line.Size = new System.Drawing.Size(233, 38);
+            this._line.Size = new System.Drawing.Size(130, 28);
             this._line.TabIndex = 1;
             this._line.Text = "Line";
             this._line.UseVisualStyleBackColor = true;
@@ -55,22 +58,36 @@
             // 
             // _clear
             // 
-            this._clear.Location = new System.Drawing.Point(554, 12);
+            this._clear.Location = new System.Drawing.Point(458, 9);
+            this._clear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._clear.Name = "_clear";
-            this._clear.Size = new System.Drawing.Size(233, 38);
+            this._clear.Size = new System.Drawing.Size(130, 28);
             this._clear.TabIndex = 2;
             this._clear.Text = "Clear";
             this._clear.UseVisualStyleBackColor = true;
             this._clear.Click += new System.EventHandler(this.HandleClearButtonClick);
             // 
+            // _ellipse
+            // 
+            this._ellipse.Location = new System.Drawing.Point(309, 9);
+            this._ellipse.Margin = new System.Windows.Forms.Padding(2);
+            this._ellipse.Name = "_ellipse";
+            this._ellipse.Size = new System.Drawing.Size(130, 28);
+            this._ellipse.TabIndex = 3;
+            this._ellipse.Text = "Ellipse";
+            this._ellipse.UseVisualStyleBackColor = true;
+            this._ellipse.Click += new System.EventHandler(this.HandleEllipseButtonClick);
+            // 
             // DrawingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 338);
+            this.Controls.Add(this._ellipse);
             this.Controls.Add(this._clear);
             this.Controls.Add(this._line);
             this.Controls.Add(this._diamond);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DrawingForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -81,6 +98,7 @@
         private System.Windows.Forms.Button _diamond;
         private System.Windows.Forms.Button _line;
         private System.Windows.Forms.Button _clear;
+        private System.Windows.Forms.Button _ellipse;
     }
 }
 

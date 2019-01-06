@@ -32,8 +32,8 @@ namespace DrawingApp.PresentationModel
 
         public PresentationModel(Model model, Canvas canvas)
         {
-            this._model = model;
             _graphics = new WindowsStoreGraphicsAdaptor(canvas);
+            this._model = model;
         }
 
         /// <summary>   Draws this object. </summary>

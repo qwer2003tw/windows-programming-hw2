@@ -38,12 +38,26 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Diamond.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\Impl\DrawCommand.cs" />
+    <Compile Include="Command\Impl\MoveCommand.cs" />
+    <Compile Include="DrawType.cs" />
+    <Compile Include="ShapeFactory.cs" />
+    <Compile Include="Shape\Impl\Diamond.cs" />
+    <Compile Include="Shape\Impl\Ellipse.cs" />
     <Compile Include="IGraphics.cs" />
-    <Compile Include="IShape.cs" />
-    <Compile Include="Line.cs" />
+    <Compile Include="Shape\IShape.cs" />
+    <Compile Include="State\Impl\PointerState.cs" />
+    <Compile Include="State\Impl\DrawingState.cs" />
+    <Compile Include="State\IState.cs" />
+    <Compile Include="Shape\Impl\Line.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Runtime.WindowsRuntime">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\system.runtime.windowsruntime\4.0.11\ref\netcore50\System.Runtime.WindowsRuntime.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
