@@ -8,8 +8,6 @@ using System.Windows.Forms;
 namespace DrawingForm.PresentationModel
 {
     /// <summary>   A data Model for the presentation. </summary>
-    ///
-    /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
     public class PresentationModel
     {
@@ -17,8 +15,6 @@ namespace DrawingForm.PresentationModel
         readonly Model _model;
 
         /// <summary>   Constructor. </summary>
-        ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
         ///
         /// <param name="model">    The model. </param>
         /// <param name="canvas">   The canvas. </param>
@@ -30,8 +26,6 @@ namespace DrawingForm.PresentationModel
 
         /// <summary>   Draws the given graphics. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="graphics"> The graphics. </param>
 
         public void Draw(System.Drawing.Graphics graphics)
@@ -40,6 +34,42 @@ namespace DrawingForm.PresentationModel
             // 而Adaptor又直接使用graphics，這樣DoubleBuffer才能正確運作
             // 因此，Adaptor不能重複使用，每次都要重新new
             _model.Draw(new WindowsFormsGraphicsAdapter(graphics));
+        }
+
+        /// <summary>   Gets a value indicating whether the have next step. </summary>
+        ///
+        /// <value> True if have next step, false if not. </value>
+
+        public bool HaveNextStep
+        {
+            get
+            {
+                return _model.HaveNextStep;
+            }
+        }
+
+        /// <summary>   Gets a value indicating whether the have previous step. </summary>
+        ///
+        /// <value> True if have previous step, false if not. </value>
+
+        public bool HavePreviousStep
+        {
+            get
+            {
+                return _model.HavePreviousStep;
+            }
+        }
+
+        /// <summary>   Go forward. </summary>
+        public void GoForward()
+        {
+            _model.GoForward();
+        }
+
+        /// <summary>   Go backward. </summary>
+        public void GoBackward()
+        {
+            _model.GoBackward();
         }
     }
 }

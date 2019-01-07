@@ -1,10 +1,22 @@
-﻿using System;
+﻿// file:	Shape\Impl\Ellipse.cs
+//
+// summary:	Implements the ellipse class
+
+using System;
 using Windows.Foundation;
 
-namespace DrawingModel.Shape.Impl
+namespace DrawingModel.Shape.Implement
 {
+    /// <summary>   An ellipse. </summary>
     public class Ellipse : IShape
     {
+        /// <summary>   Constructor. </summary>
+        ///
+        /// <param name="x1">   The x coordinate 1. </param>
+        /// <param name="y1">   The y coordinate 1. </param>
+        /// <param name="x2">   The x coordinate 2. </param>
+        /// <param name="y2">   The y coordinate 2. </param>
+
         public Ellipse(double x1, double y1, double x2, double y2)
         {
             X1 = x1;
@@ -12,6 +24,7 @@ namespace DrawingModel.Shape.Impl
             X2 = x2;
             Y2 = y2;
         }
+
         /// <summary>   Gets or sets the x coordinate 1. </summary>
         ///
         /// <value> The x coordinate 1. </value>
@@ -48,10 +61,21 @@ namespace DrawingModel.Shape.Impl
             get; set;
         }
 
+        /// <summary>   Draws the given graphics. </summary>
+        ///
+        /// <param name="graphics">     The graphics. </param>
+        /// <param name="isRedLine">    True if is red line, false if not. </param>
+
         public void Draw(IGraphics graphics, bool isRedLine)
         {
             graphics.DrawEllipse(this.X1, this.Y1, this.X2, this.Y2, isRedLine);
         }
+
+        /// <summary>   Query if 'point' is inside. </summary>
+        ///
+        /// <param name="point">    The point. </param>
+        ///
+        /// <returns>   True if inside, false if not. </returns>
 
         public bool IsInside(Point point)
         {

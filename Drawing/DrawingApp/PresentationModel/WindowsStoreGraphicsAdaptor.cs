@@ -13,20 +13,22 @@ namespace DrawingApp.PresentationModel
 {
     /// <summary>   The windows store graphics adaptor. </summary>
     ///
-    /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+    /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
     class WindowsStoreGraphicsAdaptor : IGraphics
     {
+        /// <summary>   The two. </summary>
         private const int TWO = 2;
+        /// <summary>   The thick. </summary>
         private const int THICK = 25;
         /// <summary>   The canvas. </summary>
         Canvas _canvas;
 
         /// <summary>   Constructor. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="canvas">   The canvas. </param>
+        ///
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public WindowsStoreGraphicsAdaptor(Canvas canvas)
         {
@@ -35,7 +37,7 @@ namespace DrawingApp.PresentationModel
 
         /// <summary>   Clears all. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public void ClearAll()
         {
@@ -44,12 +46,13 @@ namespace DrawingApp.PresentationModel
 
         /// <summary>   Draw diamond. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        /// <param name="x1">           The first x value. </param>
+        /// <param name="y1">           The first y value. </param>
+        /// <param name="x2">           The second x value. </param>
+        /// <param name="y2">           The second y value. </param>
+        /// <param name="isRedLine">    True if is red line, false if not. </param>
         ///
-        /// <param name="x1">   The first x value. </param>
-        /// <param name="y1">   The first y value. </param>
-        /// <param name="x2">   The second x value. </param>
-        /// <param name="y2">   The second y value. </param>
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public void DrawDiamond(double x1, double y1, double x2, double y2, bool isRedLine)
         {
@@ -69,6 +72,14 @@ namespace DrawingApp.PresentationModel
             _canvas.Children.Add(shape);
         }
 
+        /// <summary>   Draw ellipse. </summary>
+        ///
+        /// <param name="x1">           The first x value. </param>
+        /// <param name="y1">           The first y value. </param>
+        /// <param name="x2">           The second x value. </param>
+        /// <param name="y2">           The second y value. </param>
+        /// <param name="isRedLine">    True if is red line, false if not. </param>
+
         public void DrawEllipse(double x1, double y1, double x2, double y2, bool isRedLine)
         {
             Windows.UI.Xaml.Shapes.Ellipse shape = new Windows.UI.Xaml.Shapes.Ellipse();
@@ -83,12 +94,13 @@ namespace DrawingApp.PresentationModel
 
         /// <summary>   Draw line. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        /// <param name="x1">           The first x value. </param>
+        /// <param name="y1">           The first y value. </param>
+        /// <param name="x2">           The second x value. </param>
+        /// <param name="y2">           The second y value. </param>
+        /// <param name="isRedLine">    True if is red line, false if not. </param>
         ///
-        /// <param name="x1">   The first x value. </param>
-        /// <param name="y1">   The first y value. </param>
-        /// <param name="x2">   The second x value. </param>
-        /// <param name="y2">   The second y value. </param>
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public void DrawLine(double x1, double y1, double x2, double y2, bool isRedLine)
         {

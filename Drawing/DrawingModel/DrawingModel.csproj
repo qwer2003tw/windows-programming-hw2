@@ -38,6 +38,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\CommandManager.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\Impl\DrawCommand.cs" />
     <Compile Include="Command\Impl\MoveCommand.cs" />

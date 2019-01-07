@@ -5,15 +5,23 @@
 using System;
 using Windows.Foundation;
 
-namespace DrawingModel.Shape.Impl
+namespace DrawingModel.Shape.Implement
 {
     /// <summary>   A line. </summary>
     ///
-    /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+    /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
     public class Line : IShape
     {
+        /// <summary>   The minimum distance. </summary>
         private const double MINIMUM_DISTANCE = 5;
+
+        /// <summary>   Constructor. </summary>
+        ///
+        /// <param name="x1">   The x coordinate 1. </param>
+        /// <param name="y1">   The y coordinate 1. </param>
+        /// <param name="x2">   The x coordinate 2. </param>
+        /// <param name="y2">   The y coordinate 2. </param>
 
         public Line(double x1, double y1, double x2, double y2)
         {
@@ -22,6 +30,7 @@ namespace DrawingModel.Shape.Impl
             X2 = x2;
             Y2 = y2;
         }
+
         /// <summary>   Gets or sets the x coordinate 1. </summary>
         ///
         /// <value> The x coordinate 1. </value>
@@ -60,14 +69,21 @@ namespace DrawingModel.Shape.Impl
 
         /// <summary>   Draws the given graphics. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        /// <param name="graphics">     The graphics. </param>
+        /// <param name="isRedLine">    True if is red line, false if not. </param>
         ///
-        /// <param name="graphics"> The graphics. </param>
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public void Draw(IGraphics graphics, bool isRedLine)
         {
             graphics.DrawLine(X1, Y1, X2, Y2, isRedLine);
         }
+
+        /// <summary>   Query if 'point' is inside. </summary>
+        ///
+        /// <param name="point">    The point. </param>
+        ///
+        /// <returns>   True if inside, false if not. </returns>
 
         public bool IsInside(Point point)
         {

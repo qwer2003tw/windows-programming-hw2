@@ -9,7 +9,7 @@ namespace DrawingForm.PresentationModel
 {
     /// <summary>   The windows forms graphics adapter. </summary>
     ///
-    /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+    /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
     public class WindowsFormsGraphicsAdapter : IGraphics
     {
@@ -20,9 +20,9 @@ namespace DrawingForm.PresentationModel
 
         /// <summary>   Constructor. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="graphics"> The graphics. </param>
+        ///
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public WindowsFormsGraphicsAdapter(Graphics graphics)
         {
@@ -31,7 +31,7 @@ namespace DrawingForm.PresentationModel
 
         /// <summary>   Clears all. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public void ClearAll()
         {
@@ -40,12 +40,13 @@ namespace DrawingForm.PresentationModel
 
         /// <summary>   Draw diamond. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        /// <param name="x1">           The first x value. </param>
+        /// <param name="y1">           The first y value. </param>
+        /// <param name="x2">           The second x value. </param>
+        /// <param name="y2">           The second y value. </param>
+        /// <param name="isRedLine">    True if is red line, false if not. </param>
         ///
-        /// <param name="x1">   The first x value. </param>
-        /// <param name="y1">   The first y value. </param>
-        /// <param name="x2">   The second x value. </param>
-        /// <param name="y2">   The second y value. </param>
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public void DrawDiamond(double x1, double y1, double x2, double y2, bool isRedLine)
         {
@@ -59,6 +60,14 @@ namespace DrawingForm.PresentationModel
             _graphics.DrawPolygon(isRedLine ? Pens.Red : Pens.Black, points);
         }
 
+        /// <summary>   Draw ellipse. </summary>
+        ///
+        /// <param name="x1">           The first x value. </param>
+        /// <param name="y1">           The first y value. </param>
+        /// <param name="x2">           The second x value. </param>
+        /// <param name="y2">           The second y value. </param>
+        /// <param name="isRedLine">    True if is red line, false if not. </param>
+
         public void DrawEllipse(double x1, double y1, double x2, double y2, bool isRedLine)
         {
             _graphics.DrawEllipse(isRedLine ? Pens.Red : Pens.Black, (float)x1, (float)y1, (float)(x2 - x1), (float)(y2 - y1));
@@ -66,12 +75,13 @@ namespace DrawingForm.PresentationModel
 
         /// <summary>   Draw line. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        /// <param name="x1">           The first x value. </param>
+        /// <param name="y1">           The first y value. </param>
+        /// <param name="x2">           The second x value. </param>
+        /// <param name="y2">           The second y value. </param>
+        /// <param name="isRedLine">    True if is red line, false if not. </param>
         ///
-        /// <param name="x1">   The first x value. </param>
-        /// <param name="y1">   The first y value. </param>
-        /// <param name="x2">   The second x value. </param>
-        /// <param name="y2">   The second y value. </param>
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public void DrawLine(double x1, double y1, double x2, double y2, bool isRedLine)
         {

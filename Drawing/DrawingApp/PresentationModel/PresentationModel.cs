@@ -14,7 +14,7 @@ namespace DrawingApp.PresentationModel
 {
     /// <summary>   A data Model for the presentation. </summary>
     ///
-    /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+    /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
     class PresentationModel
     {
@@ -25,10 +25,10 @@ namespace DrawingApp.PresentationModel
 
         /// <summary>   Constructor. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="model">    The model. </param>
         /// <param name="canvas">   The canvas. </param>
+        ///
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public PresentationModel(Model model, Canvas canvas)
         {
@@ -38,7 +38,7 @@ namespace DrawingApp.PresentationModel
 
         /// <summary>   Draws this object. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public void Draw()
         {

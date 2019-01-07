@@ -11,8 +11,6 @@ using System.Windows.Forms;
 namespace DrawingForm
 {
     /// <summary>   Form for viewing the drawing. </summary>
-    ///
-    /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
     public partial class DrawingForm : Form
     {
@@ -24,8 +22,6 @@ namespace DrawingForm
         Panel _canvas = new DoubleBufferedPanel();
 
         /// <summary>   Default constructor. </summary>
-        ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public DrawingForm()
         {
@@ -52,8 +48,6 @@ namespace DrawingForm
         }
 
         /// <summary>   Handles the model changed. </summary>
-        ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         private void HandleModelChanged()
         {
@@ -61,8 +55,6 @@ namespace DrawingForm
         }
 
         /// <summary>   Handles the clear button click. </summary>
-        ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
         ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Event information. </param>
@@ -74,8 +66,6 @@ namespace DrawingForm
 
         /// <summary>   Handles the line button click. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Event information. </param>
 
@@ -85,8 +75,6 @@ namespace DrawingForm
         }
 
         /// <summary>   Handles the diamond button click. </summary>
-        ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
         ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Event information. </param>
@@ -98,8 +86,6 @@ namespace DrawingForm
 
         /// <summary>   Handles the canvas paint. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Paint event information. </param>
 
@@ -109,8 +95,6 @@ namespace DrawingForm
         }
 
         /// <summary>   Handles the canvas moved. </summary>
-        ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
         ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Mouse event information. </param>
@@ -122,19 +106,16 @@ namespace DrawingForm
 
         /// <summary>   Handles the canvas released. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Mouse event information. </param>
 
         private void HandleCanvasReleased(object sender, MouseEventArgs e)
         {
             _model.ReleasePointer(e.X, e.Y);
+            UpdateExecuteButtons();
         }
 
         /// <summary>   Handles the canvas pressed. </summary>
-        ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
         ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Mouse event information. </param>
@@ -144,9 +125,43 @@ namespace DrawingForm
             _model.PressPointer(e.X, e.Y);
         }
 
+        /// <summary>   Handles the ellipse button click. </summary>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Event information. </param>
+
         private void HandleEllipseButtonClick(object sender, EventArgs e)
         {
             _model.ChangeToEllipse();
+        }
+
+        /// <summary>   Updates the execute buttons. </summary>
+        private void UpdateExecuteButtons()
+        {
+            _buttonForward.Enabled = _presentationModel.HaveNextStep;
+            _buttonBackward.Enabled = _presentationModel.HavePreviousStep;
+        }
+
+        /// <summary>   Handles the button forward click. </summary>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Event information. </param>
+
+        public void HandleButtonForwardClick(object sender, EventArgs e)
+        {
+            _presentationModel.GoForward();
+            UpdateExecuteButtons();
+        }
+
+        /// <summary>   Handles the button backward click. </summary>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Event information. </param>
+
+        public void HandleButtonBackwardClick(object sender, EventArgs e)
+        {
+            _presentationModel.GoBackward();
+            UpdateExecuteButtons();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DrawingApp
 {
     /// <summary>   An empty page that can be used on its own or navigated to within a Frame. </summary>
     ///
-    /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+    /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
     public sealed partial class MainPage : Page
     {
@@ -25,7 +25,7 @@ namespace DrawingApp
 
         /// <summary>   Default constructor. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         public MainPage()
         {
@@ -43,10 +43,10 @@ namespace DrawingApp
 
         /// <summary>   Handles the diamond button click. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Routed event information. </param>
+        ///
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         private void HandleDiamondButtonClick(object sender, RoutedEventArgs e)
         {
@@ -55,10 +55,10 @@ namespace DrawingApp
 
         /// <summary>   Handles the line button click. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Routed event information. </param>
+        ///
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         private void HandleLineButtonClick(object sender, RoutedEventArgs e)
         {
@@ -67,7 +67,7 @@ namespace DrawingApp
 
         /// <summary>   Handles the model changed. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         private void HandleModelChanged()
         {
@@ -76,10 +76,10 @@ namespace DrawingApp
 
         /// <summary>   Handles the clear button click. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Routed event information. </param>
+        ///
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         private void HandleClearButtonClick(object sender, RoutedEventArgs e)
         {
@@ -88,10 +88,10 @@ namespace DrawingApp
 
         /// <summary>   Handles the canvas moved. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Pointer routed event information. </param>
+        ///
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         private void HandleCanvasMoved(object sender, PointerRoutedEventArgs e)
         {
@@ -100,10 +100,10 @@ namespace DrawingApp
 
         /// <summary>   Handles the canvas released. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Pointer routed event information. </param>
+        ///
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         private void HandleCanvasReleased(object sender, PointerRoutedEventArgs e)
         {
@@ -112,15 +112,20 @@ namespace DrawingApp
 
         /// <summary>   Handles the canvas pressed. </summary>
         ///
-        /// <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
-        ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Pointer routed event information. </param>
+        ///
+        /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
         private void HandleCanvasPressed(object sender, PointerRoutedEventArgs e)
         {
             _model.PressPointer(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
+
+        /// <summary>   Handles the ellipse button click. </summary>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Routed event information. </param>
 
         private void HandleEllipseButtonClick(object sender, RoutedEventArgs e)
         {
