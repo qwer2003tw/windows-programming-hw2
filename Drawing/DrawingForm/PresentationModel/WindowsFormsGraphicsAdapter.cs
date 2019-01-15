@@ -52,10 +52,10 @@ namespace DrawingForm.PresentationModel
         {
             int middleX = (int)(x1 + (x2 - x1) / TWO);
             int middleY = (int)(y1 + (y2 - y1) / TWO);
-            Point[] points = { new Point(middleX, (int)y1),
-                new Point((int)x1, middleY),
-                new Point(middleX, (int)y2),
-                new Point((int)x2, middleY) };
+            System.Drawing.Point[] points = { new System.Drawing.Point(middleX, (int)y1),
+                new System.Drawing.Point((int)x1, middleY),
+                new System.Drawing.Point(middleX, (int)y2),
+                new System.Drawing.Point((int)x2, middleY) };
             _graphics.FillPolygon(Brushes.BlueViolet, points);
             _graphics.DrawPolygon(isRedLine ? Pens.Red : Pens.Black, points);
         }

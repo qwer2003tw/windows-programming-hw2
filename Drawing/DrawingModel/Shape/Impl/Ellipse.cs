@@ -3,7 +3,6 @@
 // summary:	Implements the ellipse class
 
 using System;
-using Windows.Foundation;
 
 namespace DrawingModel.Shape.Implement
 {

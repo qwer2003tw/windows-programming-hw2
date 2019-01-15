@@ -61,10 +61,10 @@ namespace DrawingApp.PresentationModel
             int middleY = (int)(y1 + (y2 - y1) / TWO);
 
             PointCollection points = new PointCollection();
-            points.Add(new Point(middleX, (int)y1));
-            points.Add(new Point((int)x1, middleY));
-            points.Add(new Point(middleX, (int)y2));
-            points.Add(new Point((int)x2, middleY));
+            points.Add(new Windows.Foundation.Point(middleX, (int)y1));
+            points.Add(new Windows.Foundation.Point((int)x1, middleY));
+            points.Add(new Windows.Foundation.Point(middleX, (int)y2));
+            points.Add(new Windows.Foundation.Point((int)x2, middleY));
             shape.Points = points;
             shape.Margin = new Windows.UI.Xaml.Thickness(THICK);
             shape.Fill = new SolidColorBrush(Colors.AliceBlue);

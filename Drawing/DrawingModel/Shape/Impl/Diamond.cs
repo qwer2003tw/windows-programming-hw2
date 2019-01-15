@@ -2,8 +2,6 @@
 //
 // summary:	Implements the diamond class
 
-using System;
-using Windows.Foundation;
 
 namespace DrawingModel.Shape.Implement
 {

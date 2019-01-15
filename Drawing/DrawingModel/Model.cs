@@ -5,10 +5,8 @@
 using DrawingModel.Command;
 using DrawingModel.Command.Implement;
 using DrawingModel.Shape;
-using DrawingModel.Shape.Implement;
 using DrawingModel.State.Implement;
 using System.Collections.Generic;
-using Windows.Foundation;
 
 namespace DrawingModel
 {

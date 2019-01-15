@@ -3,7 +3,6 @@
 // summary:	Implements the line class
 
 using System;
-using Windows.Foundation;
 
 namespace DrawingModel.Shape.Implement
 {

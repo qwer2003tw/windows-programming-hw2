@@ -2,8 +2,6 @@
 //
 // summary:	Implements the shape class
 
-using Windows.Foundation;
-
 namespace DrawingModel.Shape
 {
     /// <summary>   Interface for shape. </summary>
