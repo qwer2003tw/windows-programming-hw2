@@ -21,7 +21,7 @@ namespace DrawingModel
         /// <param name="y2">           The second y value. </param>
         /// <param name="isRedLine">    True if is red line, false if not. </param>
 
-        void DrawLine(double x1, double y1, double x2, double y2, bool isRedLine);
+        void DrawLine(Point point1, Point point2, bool isRedLine);
 
         /// <summary>   Draw diamond. </summary>
         ///
@@ -31,7 +31,7 @@ namespace DrawingModel
         /// <param name="y2">           The second y value. </param>
         /// <param name="isRedLine">    True if is red line, false if not. </param>
 
-        void DrawDiamond(double x1, double y1, double x2, double y2, bool isRedLine);
+        void DrawDiamond(Point point1, Point point2, bool isRedLine);
 
         /// <summary>   Draw ellipse. </summary>
         ///
@@ -41,6 +41,6 @@ namespace DrawingModel
         /// <param name="y2">           The second y value. </param>
         /// <param name="isRedLine">    True if is red line, false if not. </param>
 
-        void DrawEllipse(double x1, double y1, double x2, double y2, bool isRedLine);
+        void DrawEllipse(Point point1, Point point2, bool isRedLine);
     }
 }

@@ -67,7 +67,10 @@ namespace DrawingModel.Shape.Implement
 
         public void Draw(IGraphics graphics, bool isRedLine)
         {
-            graphics.DrawEllipse(this.X1, this.Y1, this.X2, this.Y2, isRedLine);
+            Point point1 = new Point(X1, Y1);
+            Point point2 = new Point(X2, Y2);
+
+            graphics.DrawEllipse(point1, point2, isRedLine);
         }
 
         /// <summary>   Query if 'point' is inside. </summary>

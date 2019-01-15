@@ -46,25 +46,25 @@ namespace DrawingApp.PresentationModel
 
         /// <summary>   Draw diamond. </summary>
         ///
-        /// <param name="x1">           The first x value. </param>
-        /// <param name="y1">           The first y value. </param>
-        /// <param name="x2">           The second x value. </param>
-        /// <param name="y2">           The second y value. </param>
+        /// <param name="point1.X">           The first x value. </param>
+        /// <param name="point1.Y">           The first y value. </param>
+        /// <param name="point2.X">           The second x value. </param>
+        /// <param name="point2.Y">           The second y value. </param>
         /// <param name="isRedLine">    True if is red line, false if not. </param>
         ///
         /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
-        public void DrawDiamond(double x1, double y1, double x2, double y2, bool isRedLine)
+        public void DrawDiamond(DrawingModel.Point point1, DrawingModel.Point point2, bool isRedLine)
         {
             Windows.UI.Xaml.Shapes.Polygon shape = new Windows.UI.Xaml.Shapes.Polygon();
-            int middleX = (int)(x1 + (x2 - x1) / TWO);
-            int middleY = (int)(y1 + (y2 - y1) / TWO);
+            int middleX = (int)(point1.X + (point2.X - point1.X) / TWO);
+            int middleY = (int)(point1.Y + (point2.Y - point1.Y) / TWO);
 
             PointCollection points = new PointCollection();
-            points.Add(new Windows.Foundation.Point(middleX, (int)y1));
-            points.Add(new Windows.Foundation.Point((int)x1, middleY));
-            points.Add(new Windows.Foundation.Point(middleX, (int)y2));
-            points.Add(new Windows.Foundation.Point((int)x2, middleY));
+            points.Add(new Windows.Foundation.Point(middleX, (int)point1.Y));
+            points.Add(new Windows.Foundation.Point((int)point1.X, middleY));
+            points.Add(new Windows.Foundation.Point(middleX, (int)point2.Y));
+            points.Add(new Windows.Foundation.Point((int)point2.X, middleY));
             shape.Points = points;
             shape.Margin = new Windows.UI.Xaml.Thickness(THICK);
             shape.Fill = new SolidColorBrush(Colors.AliceBlue);
@@ -74,41 +74,41 @@ namespace DrawingApp.PresentationModel
 
         /// <summary>   Draw ellipse. </summary>
         ///
-        /// <param name="x1">           The first x value. </param>
-        /// <param name="y1">           The first y value. </param>
-        /// <param name="x2">           The second x value. </param>
-        /// <param name="y2">           The second y value. </param>
+        /// <param name="point1.X">           The first x value. </param>
+        /// <param name="point1.Y">           The first y value. </param>
+        /// <param name="point2.X">           The second x value. </param>
+        /// <param name="point2.Y">           The second y value. </param>
         /// <param name="isRedLine">    True if is red line, false if not. </param>
 
-        public void DrawEllipse(double x1, double y1, double x2, double y2, bool isRedLine)
+        public void DrawEllipse(DrawingModel.Point point1, DrawingModel.Point point2, bool isRedLine)
         {
             Windows.UI.Xaml.Shapes.Ellipse shape = new Windows.UI.Xaml.Shapes.Ellipse();
             shape.Fill = new SolidColorBrush(Colors.AliceBlue);
             shape.Stroke = new SolidColorBrush(isRedLine ? Colors.Red : Colors.Black);
-            shape.Width = Math.Abs(x2 - x1);
-            shape.Height = Math.Abs(y2 - y1);
-            Canvas.SetTop(shape, (y1 < y2) ? y1 : y2);
-            Canvas.SetLeft(shape, (x1 < x2) ? x1 : x2);
+            shape.Width = Math.Abs(point2.X - point1.X);
+            shape.Height = Math.Abs(point2.Y - point1.Y);
+            Canvas.SetTop(shape, (point1.Y < point2.Y) ? point1.Y : point2.Y);
+            Canvas.SetLeft(shape, (point1.X < point2.X) ? point1.X : point2.X);
             _canvas.Children.Add(shape);
         }
 
         /// <summary>   Draw line. </summary>
         ///
-        /// <param name="x1">           The first x value. </param>
-        /// <param name="y1">           The first y value. </param>
-        /// <param name="x2">           The second x value. </param>
-        /// <param name="y2">           The second y value. </param>
+        /// <param name="point1.X">           The first x value. </param>
+        /// <param name="point1.Y">           The first y value. </param>
+        /// <param name="point2.X">           The second x value. </param>
+        /// <param name="point2.Y">           The second y value. </param>
         /// <param name="isRedLine">    True if is red line, false if not. </param>
         ///
         /// ### <remarks>   Chen-Tai,Peng, 12/12/2018. </remarks>
 
-        public void DrawLine(double x1, double y1, double x2, double y2, bool isRedLine)
+        public void DrawLine(DrawingModel.Point point1, DrawingModel.Point point2, bool isRedLine)
         {
             Windows.UI.Xaml.Shapes.Line line = new Windows.UI.Xaml.Shapes.Line();
-            line.X1 = x1;
-            line.Y1 = y1;
-            line.X2 = x2;
-            line.Y2 = y2;
+            line.X1 = point1.X;
+            line.Y1 = point1.Y;
+            line.X2 = point2.X;
+            line.Y2 = point2.Y;
             line.Stroke = new SolidColorBrush(isRedLine ? Colors.Red : Colors.Black);
             _canvas.Children.Add(line);
         }

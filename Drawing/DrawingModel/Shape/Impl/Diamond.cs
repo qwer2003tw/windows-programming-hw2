@@ -2,7 +2,6 @@
 //
 // summary:	Implements the diamond class
 
-
 namespace DrawingModel.Shape.Implement
 {
     /// <summary>   A diamond. </summary>
@@ -71,7 +70,9 @@ namespace DrawingModel.Shape.Implement
 
         public void Draw(IGraphics graphics, bool isRedLine)
         {
-            graphics.DrawDiamond(X1, Y1, X2, Y2, isRedLine);
+            Point point1 = new Point(X1, Y1);
+            Point point2 = new Point(X2, Y2);
+            graphics.DrawDiamond(point1, point2, isRedLine);
         }
 
         /// <summary>   Query if 'point' is inside. </summary>
